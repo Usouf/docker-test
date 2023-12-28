@@ -99,6 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.BaseUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -121,3 +122,40 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CELERY
+################################################################################
+from celery.schedules import crontab
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379"
+CELERY_TIMEZONE = 'Asia/Dubai'
+CELERY_BEAT_SCHEDULE = {
+    "seal-assessments": {
+        'task': 'users.tasks.send_dispute_email_task',
+        'schedule': crontab(minute='*/5', hour=0), # run at midnight everyday
+    }
+}
+
+# LOGGING
+################################################################################
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'prepend_date': {
+            'format': '[{asctime}] [{levelname}]: {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'prepend_date',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}

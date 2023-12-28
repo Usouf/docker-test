@@ -20,3 +20,4 @@ django-celery-beat
 icalendar
 sentry-sdk
 weasyprint
+flower
