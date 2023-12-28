@@ -1,9 +1,7 @@
 #!/bin/bash
 
+/usr/local/bin/python manage.py makemigrations --noinput
 /usr/local/bin/python manage.py migrate --noinput
-
-# /usr/local/bin/python manage.py elpsuperuser
-
 /usr/local/bin/python manage.py collectstatic --noinput
 
 RUN_PORT=${PORT:-8000}
