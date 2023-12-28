@@ -150,6 +150,10 @@ CELERY_BEAT_SCHEDULE = {
     }
 }
 
+# Set the Celery log file path
+CELERYD_LOG_FILE = "/app/logs/celery.log"
+CELERYBEAT_LOG_FILE = "/app/logs/beat.log"
+
 # LOGGING
 ################################################################################
 LOGGING = {
