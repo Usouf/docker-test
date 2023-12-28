@@ -176,6 +176,18 @@ LOGGING = {
             'filename': '/app/logs/app.log',  # Adjust the path accordingly
         },
     },
+    'loggers': {
+        'docker_test': {
+            'handlers': ['file'],
+            'level': 'INFO',
+        },
+        # ====== Magic starts
+        'celery': {
+            'handlers': ['file'],
+            'level': 'INFO',
+        }
+        # ===== Magic ends
+    },
     'root': {
         'handlers': ['console'],
         'level': 'INFO',
