@@ -166,6 +166,11 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'prepend_date',
         },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/app/logs/app.log',  # Adjust the path accordingly
+        },
     },
     'root': {
         'handlers': ['console'],
